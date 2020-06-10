@@ -3,21 +3,15 @@ const numberOfSpirals = 3
 
 // Setup 2-Dimensional Array 
 const width = 2 * numberOfSpirals - 1
-const height = width
-const grid = Array(width)
-for (let x = 0; x < width; x++){
-	grid[x] = Array(height)
-	for (let y = 0; y < height; y++){
-		grid[x][y] = 0
-	}
-}
+const grid = Array.from({ length: width }, () => Array.from({ length: width }, () => 0))
 
 // Do the spiral
-const biggestNumber = width * height
+const biggestNumber = width * width
 let currentX = numberOfSpirals - 1
 let currentY = currentX
 let currentSpiral = 0
-for (let currentNumber = 1; currentNumber <= biggestNumber;){
+let currentNumber = 1
+while (currentNumber <= biggestNumber){
 	for (let dir = 0; dir < 4; dir++){
 		let numberOfSteps;
 		if (dir == 0) {
@@ -48,7 +42,7 @@ for (let currentNumber = 1; currentNumber <= biggestNumber;){
 const maximumDigets = biggestNumber.toString().length
 for (let x = 0; x < width; x++){
 	let line = ""
-	for (let y = 0; y < height; y++){
+	for (let y = 0; y < width; y++){
 		word = ""
 		number = grid[x][y]
 		numberDigets = number.toString().length
